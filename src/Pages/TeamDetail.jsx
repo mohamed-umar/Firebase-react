@@ -1,5 +1,4 @@
 import React from 'react';
-import firebaseHOC from '../firebaseHOC';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const TeamDetail = (props) => {
@@ -17,4 +16,4 @@ const TeamDetail = (props) => {
      );
 }
  
-export default firebaseHOC(TeamDetail);
+export default TeamDetail;

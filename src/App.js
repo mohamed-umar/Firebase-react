@@ -1,24 +1,18 @@
-import React from 'react';
-import firebaseHOC from './firebaseHOC';
+import React, {useContext} from 'react';
 import './App.css';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-
 import Routes from './Routes';
 
+import { FireBaseContext } from './context/FireBaseContext';
 
-
-function App(props) {
-
-  const [user] = useAuthState(props.auth);
-  console.log(props);
+function App() {
+  const firebaseTools = useContext(FireBaseContext);  
+  const [user] = useAuthState(firebaseTools.auth);
+ 
   return (
     <div className="App">
-      <section>
-        {user ? <Routes /> : <SignIn {...props}/>}
-      </section>
-
+        {user ? <Routes /> : <SignIn {...firebaseTools}/>}
     </div>
   );
 }
@@ -39,8 +33,4 @@ function SignIn(props) {
 
 }
 
-
-
-
-
-export default firebaseHOC(App);
+export default App;
